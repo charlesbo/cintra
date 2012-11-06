@@ -49,7 +49,7 @@
 	  <textarea name="description" tal:content="inst.description" rows="3"
 	  	    cols="80"/><br/>
 	  <div>Settle conditions: <br/></div>
-	  <textarea name="settleConditions" tal:content="inst.settleConditions" rows="5"
+	  <textarea name="settleConditions" tal:content="inst.settleConditions" rows="10"
 	  	    cols="80"/><br/>
 	  <div>Category: <br/></div>
 	  <textarea name="category" tal:content="inst.category" rows="1"

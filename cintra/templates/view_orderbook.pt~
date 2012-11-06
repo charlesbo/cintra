@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
       xmlns:tal="http://xml.zope.org/namespaces/tal">
 <head>
-  <title>${inst.__name__} details</title>
+  <title>${inst.__name__} orderbook details</title>
   <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
   <meta name="keywords" content="python web application" />
   <meta name="description" content="pyramid web application" />
@@ -31,10 +31,10 @@
     <div id="middle">
     </div>
     <div id="bottom">
-      <div class="top">
+      <div class="bottom">
       	<div> Name:
           <div tal:replace="structure inst.__name__">
-            Instrument name.
+            Orderbook's Instrument name.
           </div><br/>
 	</div>
 	<div> Market Price:
@@ -45,52 +45,36 @@
 	    Instrument price unit.
 	  </div><br/>
 	</div>
-        <div> Tag:
-	  <div tal:replace="structure inst.tag">
-            Instrument tag.
-          </div><br/>
+	<form method='get' action="${request.application_url}/instruments">
+	  <button type='submit' >View All</button>
+	</form>
+	<table style="width:30%;border:1px solid #8B1C62;padding:4px;">
+	  <tbody>
+	    <tr>
+	      <td style="border:1px solid #8B1C62;" valign="middle">Buy Price</td> 
+	      <td style="border:1px solid #8B1C62;" valign="middle">Buy Amount</td>
+	    </tr>
+	      <tr tal:repeat="buyorder orderbook.buyList">
+		<td style="border:1px solid #8B1C62;" valign="left" tal:content="python:buyorder.price">the order price</td>
+		<td style="border:1px solid #8B1C62;" valign="left" tal:content="python:buyorder.amountAvailable()">the order available amount</td>
+	      </tr>
+	</table>
+	<div>
 	</div>
-	<div> Description:
-          <div tal:replace="structure inst.description">
-            Instrument description.
-          </div><br/>
-	</div>
-	<div> Settle conditions:  
-          <div tal:replace="structure inst.settleConditions">
-            Instrument settleConditions.
-          </div><br/>
-	</div>
-	<div> Category:  
-          <div tal:replace="structure inst.category">
-            Instrument category.
-          </div><br/>
-	</div>
-      </div>
-      <div class="middle">
-	<div style="float:left">
-	  <form method='get' action="${request.application_url}/instruments/${inst.__name__}/buy">
-	    <button type='submit' >BUY</button>
-	  </form>
-	</div>
-	<div style="float:left">
-	  <form method='get' action="${request.application_url}/instruments/${inst.__name__}/sell">
-	    <button type='submit' >SELL</button>
-	  </form>
-	</div>
-      </div>
-      <div class="bottom">
-	<div style="float:left">
-	  <form method='get' action="${request.application_url}/orderbooks/${inst.__name__}">
-	    <button type='submit' >View this instrument's orderbook</button>
-	  </form>
-	</div>
-	<div style="float:left">
-	  <form method='get' action="${request.application_url}/instruments">
-	    <button type='submit' >View all instruments</button>
-	  </form>
-	</div>
+	<table style="width:30%;border:1px solid #8F1C62;padding:4px;">
+	  <tbody>
+	    <tr>
+	      <td style="border:1px solid #8F1C62;" valign="middle">Sell Price</td> 
+	      <td style="border:1px solid #8F1C62;" valign="middle">Sell Amount</td>
+	    </tr>
+	      <tr tal:repeat="sellorder orderbook.sellList">
+		<td style="border:1px solid #8B1C62;" valign="left" tal:content="python:sellorder.price">the order price</td>
+		<td style="border:1px solid #8B1C62;" valign="left" tal:content="python:sellorder.amountAvailable()">the order available amount</td>
+	      </tr>
+	</table>
       </div>
     </div>
+
   </div>
   <div id="footer">
     <div class="footer"

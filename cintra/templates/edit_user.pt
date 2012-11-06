@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
       xmlns:tal="http://xml.zope.org/namespaces/tal">
 <head>
-  <title>Edit ${inst.__name__}</title>
+  <title>Edit ${user.__name__}</title>
   <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
   <meta name="keywords" content="python web application" />
   <meta name="description" content="pyramid web application" />
@@ -33,26 +33,26 @@
     <div id="bottom">
       <div class="bottom">
         <form action="${save_url}" method="post">
-	  <div>Instrument Name: <br/></div>
-          <textarea name="name" tal:content="inst.__name__" rows="1"
-                    cols="60"/><br/>
-	  <div>Market Price: <br/></div>
-	  <textarea name="marketPrice" tal:content="inst.marketPrice" rows="1"
-	  	    cols="10"/><br/>
-	  <div>Price Unit: <br/></div>
-	  <textarea name="priceUnit" tal:content="inst.priceUnit" rows="1"
-	  	    cols="5"/><br/>
-	  <div>Tag: <br/></div>
-	  <textarea name="tag" tal:content="inst.tag" rows="1"
+	  <div>User Name: <br/></div>
+          <textarea name="username" tal:content="user.username" rows="1"
+                    cols="50"/><br/>
+	  <div>Nickname: <br/></div>
+	  <textarea name="nickname" tal:content="user.nickname" rows="1"
+	  	    cols="50"/><br/>
+	  <div>ID Number: <br/></div>
+	  <textarea name="cintraid" tal:content="user.cintraid" rows="1"
+	  	    cols="50"/><br/>
+	  <div>e-mail: <br/></div>
+	  <textarea name="email" tal:content="user.email" rows="1"
 	  	    cols="80"/><br/>
-	  <div>Description: <br/></div>
-	  <textarea name="description" tal:content="inst.description" rows="3"
+	  <div>Balance: <br/></div>
+	  <textarea name="balance" tal:content="user.balance" rows="1"
 	  	    cols="80"/><br/>
-	  <div>Settle conditions: <br/></div>
-	  <textarea name="settleConditions" tal:content="inst.settleConditions" rows="5"
+	  <div>Points: <br/></div>
+	  <textarea name="points" tal:content="user.points" rows="1"
 	  	    cols="80"/><br/>
-	  <div>Category: <br/></div>
-	  <textarea name="category" tal:content="inst.category" rows="1"
+	  <div>Experience: <br/></div>
+	  <textarea name="experience" tal:content="user.experience" rows="1"
 	  	    cols="80"/><br/>
           <input type="submit" name="form.submitted" value="Save"/>
         </form>
@@ -61,7 +61,7 @@
   </div>
   <div id="footer">
     <div class="footer"
-         >&copy; Copyright 2008-2011, Agendaless Consulting.</div>
+         >&copy; Copyright 2012-2013 Beyondcloud Inc.</div>
   </div>
 </body>
 </html>

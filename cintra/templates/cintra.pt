@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" xmlns:tal="http://xml.zope.org/namespaces/tal">
+<head>
+  <title>Cintra 1.0</title>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+  <meta name="keywords" content="python web application" />
+  <meta name="description" content="pyramid web application" />
+  <link rel="shortcut icon" href="/static/favicon.ico" />
+  <link rel="stylesheet" href="/static/pylons.css" type="text/css" media="screen" charset="utf-8" />
+  <link rel="stylesheet" href="http://static.pylonsproject.org/fonts/nobile/stylesheet.css" media="screen" />
+  <link rel="stylesheet" href="http://static.pylonsproject.org/fonts/neuton/stylesheet.css" media="screen" />
+  <!--[if lte IE 6]>
+  <link rel="stylesheet" href="/static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+  <![endif]-->
+</head>
+<body>
+  <div id="wrap">
+    <div id="top">
+      <div class="top align-center">
+        <div><img src="/static/pyramid.png" width="750" height="169" alt="pyramid"/></div>
+      </div>
+    </div>
+    <div id="middle">
+      <div class="middle align-center">
+        <p class="app-welcome">
+          Welcome to <span class="app-name">${project}</span> to trade world's future!
+        </p>
+      </div>
+    </div>
+    <div id="bottom">
+      <div class="bottom">
+          <div tal:repeat="instinfo insts">
+	     <a href="${request.application_url}/instruments/${instinfo[1].__name__}">${instinfo[0]}</a>&nbsp Market Price: ${instinfo[1].marketPrice}${instinfo[1].priceUnit} || Last Traded Price: ${instinfo[1].lastTradedPrice}${instinfo[1].priceUnit}
+	     <a href="${request.application_url}/instruments/${instinfo[1].__name__}/buy">Buy</a> &nbsp 
+	     <a href="${request.application_url}/instruments/${instinfo[1].__name__}/sell">Sell</a> &nbsp 
+	  </div>
+	  <form method='get' action="${request.application_url}/instruments/add_instrument">
+	  	<button type='submit' >Add Instrument</button>
+	  </form>
+      </div>
+    </div>
+  </div>
+  <div id="footer">
+    <div class="footer">&copy; Copyright 2012-2013, Beyondcloud Inc.</div>
+  </div>
+</body>
+</html>

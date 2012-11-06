@@ -1,6 +1,7 @@
 from persistent.mapping import PersistentMapping
 from cintra.models.instruments import InstrumentFolder
 from cintra.models.users import UserFolder
+from cintra.models.books import OrderbookFolder, BookFolder
 
 
 class CintraModel(PersistentMapping):
@@ -15,11 +16,21 @@ def appmaker(zodb_root):
         cintra_root['instruments'] = instFolder
         instFolder.__name__='instruments'
         instFolder.__parent__ = cintra_root
- 
+        
+        orderbookFolder = OrderbookFolder()
+        cintra_root['orderbooks'] = orderbookFolder
+        orderbookFolder.__name__='orderbooks'
+        orderbookFolder.__parent__ = cintra_root
+         
+        bookFolder = BookFolder()
+        cintra_root['books'] = bookFolder
+        bookFolder.__name__='books'
+        bookFolder.__parent__ = cintra_root
+
         userFolder = UserFolder()
         cintra_root['users'] = userFolder
         userFolder.__name__ = 'users'
-        UserFolder.__parent__ = cintra_root
+        userFolder.__parent__ = cintra_root
 
         zodb_root['cintra_root'] = cintra_root
         import transaction

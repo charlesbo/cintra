@@ -13,7 +13,7 @@ class UserTest( unittest.TestCase ):
                    cintraid=cintraid,
                    email='bobomeng@gmail.com',
                    experience = 10**99,
-                   point = 100,
+                   points = 100,
                    balance = 3,
                    )
         return usr

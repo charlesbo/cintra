@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
       xmlns:tal="http://xml.zope.org/namespaces/tal">
 <head>
-  <title>Edit ${inst.__name__}</title>
+  <title>${inst.__name__} details</title>
   <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
   <meta name="keywords" content="python web application" />
   <meta name="description" content="pyramid web application" />
@@ -32,36 +32,48 @@
     </div>
     <div id="bottom">
       <div class="bottom">
-        <form action="${save_url}" method="post">
-	  <div>Instrument Name: <br/></div>
-          <textarea name="name" tal:content="inst.__name__" rows="1"
-                    cols="60"/><br/>
-	  <div>Market Price: <br/></div>
-	  <textarea name="marketPrice" tal:content="inst.marketPrice" rows="1"
-	  	    cols="10"/><br/>
-	  <div>Price Unit: <br/></div>
-	  <textarea name="priceUnit" tal:content="inst.priceUnit" rows="1"
-	  	    cols="5"/><br/>
-	  <div>Tag: <br/></div>
-	  <textarea name="tag" tal:content="inst.tag" rows="1"
-	  	    cols="80"/><br/>
-	  <div>Description: <br/></div>
-	  <textarea name="description" tal:content="inst.description" rows="3"
-	  	    cols="80"/><br/>
-	  <div>Settle conditions: <br/></div>
-	  <textarea name="settleConditions" tal:content="inst.settleConditions" rows="5"
-	  	    cols="80"/><br/>
-	  <div>Category: <br/></div>
-	  <textarea name="category" tal:content="inst.category" rows="1"
-	  	    cols="80"/><br/>
-          <input type="submit" name="form.submitted" value="Save"/>
-        </form>
+      	<div> Name:
+          <div tal:replace="structure inst.__name__">
+            Instrument name.
+          </div><br/>
+	</div>
+	<div> Market Price:
+          <div tal:replace="structure inst.marketPrice">
+            Instrument market price.
+          </div>
+	  <div tal:replace="structure inst.priceUnit">
+	    Instrument price unit.
+	  </div><br/>
+	</div>
+        <div> Tag:
+	  <div tal:replace="structure inst.tag">
+            Instrument tag.
+          </div><br/>
+	</div>
+	<div> Description:
+          <div tal:replace="structure inst.description">
+            Instrument description.
+          </div><br/>
+	</div>
+	<div> Settle conditions:  
+          <div tal:replace="structure inst.settleConditions">
+            Instrument settleConditions.
+          </div><br/>
+	</div>
+	<div> Category:  
+          <div tal:replace="structure inst.category">
+            Instrument category.
+          </div><br/>
+	</div>
+	<form method='get' action="${request.application_url}/instruments">
+	  <button type='submit' >View All</button>
+	</form>
       </div>
     </div>
   </div>
   <div id="footer">
     <div class="footer"
-         >&copy; Copyright 2008-2011, Agendaless Consulting.</div>
+         >&copy; Copyright 2012-2013, Beyondcloud inc..</div>
   </div>
 </body>
 </html>
