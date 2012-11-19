@@ -34,7 +34,19 @@
       <div class="bottom">
         <div>Orderbooks: </div>
         <div tal:repeat="ob orderbooks">
-	  <a href="${request.application_url}/orderbooks/${ob[1].instrument.__name__}">${ob[0]}</a>
+	  <div style="float:left">
+	    <a href="${request.application_url}/orderbooks/${ob[1].instrument.__name__}">${ob[0]}</a>
+	  </div>
+	  <div style="float:left">
+	    <form method='get' action="${request.application_url}/instruments/${ob[1].instrument.__name__}/buy">
+	      <button type='submit'>Buy</button>
+	    </form>
+	  </div>
+	  <div style="float:left">
+	    <form method='get' action="${request.application_url}/instruments/${ob[1].instrument.__name__}/sell">
+	      <button type='submit'>Sell</button>
+	    </form>
+	  </div>
 	</div>
 	<form method='get' action="${request.application_url}/instruments/add_instrument">
 	  <button type='submit' >Add Instrument</button>

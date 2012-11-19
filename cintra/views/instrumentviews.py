@@ -48,6 +48,12 @@ class InstrumentViews(object):
         inst = self.context
         return dict(inst=inst)
 
+    @view_config(name='edit', context=Instrument, renderer='cintra:templates/edit_instrument.pt')
+    def edit_instrument(self):
+        inst = self.context
+        save_url = self.request.resource_url(self.context)
+        return dict(inst=inst, save_url=save_url)
+
     @view_config(context=InstrumentFolder, renderer='cintra:templates/view_instruments.pt')
     def view_instruments(self):
         return dict(insts=self.context.items())

@@ -33,27 +33,25 @@
     <div id="bottom">
       <div class="bottom">
         <form action="${save_url}" method="post">
-	  <div>User Name: <br/></div>
-          <textarea name="username" tal:content="user.username" rows="1"
-                    cols="50"/><br/>
-	  <div>Nickname: <br/></div>
-	  <textarea name="nickname" tal:content="user.nickname" rows="1"
-	  	    cols="50"/><br/>
+	  <div>User Name(Login Name): <br/></div>
+	  <input type="text" value="${user.username}" name="username"><br/>
+	  <div tal:condition="not message.get('edit',False)">Password: <br/></div>
+	  <input type="password" tal:condition="not message.get('edit',False)" name="pwd">${message.get('pwd','')}
+	  <div tal:condition="not message.get('edit',False)">Confirm password: <br/></div>
+	  <input type="password" tal:condition="not message.get('edit',False)" name="pwd2">
 	  <div>ID Number: <br/></div>
-	  <textarea name="cintraid" tal:content="user.cintraid" rows="1"
-	  	    cols="50"/><br/>
+	  <input type="text" name="cintraid" value="${user.cintraid}">
 	  <div>e-mail: <br/></div>
-	  <textarea name="email" tal:content="user.email" rows="1"
-	  	    cols="80"/><br/>
+	  <input type="text" name="email" value="${user.email}">
+	  <div>Nickname(Display Name): <br/></div>
+	  <input type="text" name="nickname" value="${user.nickname}">
 	  <div>Balance: <br/></div>
-	  <textarea name="balance" tal:content="user.balance" rows="1"
-	  	    cols="80"/><br/>
+	  <input type="text" name="balance" value="${user.balance}">
 	  <div>Points: <br/></div>
-	  <textarea name="points" tal:content="user.points" rows="1"
-	  	    cols="80"/><br/>
+	  <input type="text" name="points" value="${user.points}">
 	  <div>Experience: <br/></div>
-	  <textarea name="experience" tal:content="user.experience" rows="1"
-	  	    cols="80"/><br/>
+	  <input type="text" name="experience" value="${user.experience}">
+	  <br/>
           <input type="submit" name="form.submitted" value="Save"/>
         </form>
       </div>
