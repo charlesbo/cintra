@@ -11,7 +11,8 @@ class UserViews(object):
         self.request = request
         self.context = context
 
-    @view_config(name='add_user', context=UserFolder, renderer="cintra:templates/edit_user.pt", permission='add_user')
+    @view_config(name='add_user', context=UserFolder, renderer="cintra:templates/edit_user.pt")
+    #@view_config(name='add_user', context=UserFolder, renderer="cintra:templates/edit_user.pt", permission='add_user')
     def add_user(self):
         '''
         Add new user
@@ -50,7 +51,7 @@ class UserViews(object):
         user = User()
         user.__name__ = ''
         user.__parent__ = self.context
-        return dict(user=user, save_url=save_url, warnings={})
+        return dict(user=user, save_url=save_url, message={})
 
     @view_config(context=User, renderer='cintra:templates/view_user.pt')
     def view_user(self):
