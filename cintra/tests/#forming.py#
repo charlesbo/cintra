@@ -1,0 +1,13 @@
+import csv
+import codecs
+
+ctt=[]
+with codecs.open('google1.csv',  encoding='utf-16') as csvfile:
+    s=csv.reader(csvfile, delimiter=',')
+    for row in s:
+         #print row
+        enrow=row.encode(encoding='utf-16', errors='strict')
+        ctt.append(enrow)
+
+#print repr(open('google.csv', 'rb').read(200))
+#print repr(codecs.open('google.csv',  encoding='utf-16').read(20000))
