@@ -33,7 +33,7 @@
     <div id="bottom">
       <div class="bottom">
         <div tal:repeat="userinfo users">
-	  <a href="${request.application_url}/users/${userinfo[1].__name__}">${userinfo[1].username}&nbsp${userinfo[1].nickname}&nbsp${userinfo[0]}</a>
+	  <a href="${request.application_url}/users/${userinfo[1].__name__}">ID: ${userinfo[0]}&nbsp&nbsp Name: ${userinfo[1].username}&nbsp Nickname: ${userinfo[1].nickname}&nbsp</a>
 	</div>
 	<form method='get' action="${request.application_url}/users/add_user">
 	  <button type='submit' >Add User</button>

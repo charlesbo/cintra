@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
       xmlns:tal="http://xml.zope.org/namespaces/tal">
 <head>
-  <title>${inst.__name__} details</title>
+  <title>${user.username} details</title>
   <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
   <meta name="keywords" content="python web application" />
   <meta name="description" content="pyramid web application" />
@@ -32,42 +32,51 @@
     </div>
     <div id="bottom">
       <div class="bottom">
-      	<div> Name:
-          <div tal:replace="structure inst.__name__">
-            Instrument name.
+      	<div> User Name:
+          <div tal:replace="structure user.username">
+            User name.
           </div><br/>
 	</div>
-	<div> Market Price:
-          <div tal:replace="structure inst.marketPrice">
-            Instrument market price.
+	<div> Nick Name:
+          <div tal:replace="structure user.nickname">
+            Nick name.
           </div>
-	  <div tal:replace="structure inst.priceUnit">
-	    Instrument price unit.
-	  </div><br/>
 	</div>
-        <div> Tag:
-	  <div tal:replace="structure inst.tag">
-            Instrument tag.
+        <div> ID Number:
+	  <div tal:replace="structure user.cintraid">
+            User ID.
           </div><br/>
 	</div>
-	<div> Description:
-          <div tal:replace="structure inst.description">
-            Instrument description.
+	<div> E-Mail Address:
+          <div tal:replace="structure user.email">
+            Email address.
           </div><br/>
 	</div>
-	<div> Settle conditions:  
-          <div tal:replace="structure inst.settleConditions">
-            Instrument settleConditions.
+	<div> Balance:  
+          <div tal:replace="structure user.balance">
+            Balance.
           </div><br/>
 	</div>
-	<div> Category:  
-          <div tal:replace="structure inst.category">
-            Instrument category.
+	<div> Points:  
+          <div tal:replace="structure user.points">
+            Points.
           </div><br/>
 	</div>
-	<form method='get' action="${request.application_url}/instruments">
-	  <button type='submit' >View All</button>
+	<div> Experience:  
+          <div tal:replace="structure user.experience">
+            Experience.
+          </div><br/>
+	</div>
+	<div style='float:left'>
+	<form method='get' action="${request.application_url}/users/${user.cintraid}/edit">
+	  <button type='submit' >Edit this user</button>
+	</form>	
+	</div>
+	<div style='float:left'>
+	<form method='get' action="${request.application_url}/users">
+	  <button type='submit' >View All Users</button>
 	</form>
+	</div>
       </div>
     </div>
   </div>

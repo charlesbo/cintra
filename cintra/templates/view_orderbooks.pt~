@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
       xmlns:tal="http://xml.zope.org/namespaces/tal">
 <head>
-  <title>View all instruments</title>
+  <title>View all orderbooks</title>
   <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
   <meta name="keywords" content="python web application" />
   <meta name="description" content="pyramid web application" />
@@ -32,10 +32,21 @@
     </div>
     <div id="bottom">
       <div class="bottom">
-        <div tal:repeat="instinfo insts">
-	  <a href="${request.application_url}/instruments/${instinfo[1].__name__}">${instinfo[0]}</a>&nbsp Market Price: ${instinfo[1].marketPrice}${instinfo[1].priceUnit} || Last Traded Price: ${instinfo[1].lastTradedPrice}${instinfo[1].priceUnit}
-	  <a href="${request.application_url}/instruments/${instinfo[1].__name__}/buy">Buy</a> &nbsp 
-	  <a href="${request.application_url}/instruments/${instinfo[1].__name__}/sell">Sell</a> &nbsp 
+        <div>Orderbooks: </div>
+        <div tal:repeat="ob orderbooks">
+	  <div style="float:left">
+	    <a href="${request.application_url}/orderbooks/${ob[1].instrument.__name__}">${ob[0]}</a>
+	  </div>
+	  <div style="float:left">
+	    <form method='get' action="${request.application_url}/instruments/${ob[1].instrument.__name__}/buy">
+	      <button type='submit'>Buy</button>
+	    </form>
+	  </div>
+	  <div style="float:left">
+	    <form method='get' action="${request.application_url}/instruments/${ob[1].instrument.__name__}/sell">
+	      <button type='submit'>Sell</button>
+	    </form>
+	  </div>
 	</div>
 	<form method='get' action="${request.application_url}/instruments/add_instrument">
 	  <button type='submit' >Add Instrument</button>

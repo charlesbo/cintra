@@ -8,7 +8,7 @@
   <meta name="keywords" content="python web application" />
   <meta name="description" content="pyramid web application" />
   <link rel="shortcut icon"
-        href="/static/favicon.ico" />
+        href="/static/cintra.ico" />
   <link rel="stylesheet"
         href="/static/pylons.css"
         type="text/css" media="screen" charset="utf-8" />
@@ -75,6 +75,11 @@
 	<div style="float:left">
 	  <form method='get' action="${request.application_url}/instruments/${inst.__name__}/sell">
 	    <button type='submit' >SELL</button>
+	  </form>
+	</div>
+        <div style="float:left">
+	  <form method='get' action="${request.application_url}/instruments/${inst.__name__}/edit">
+	    <button type='submit' >Edit this instrument</button>
 	  </form>
 	</div>
       </div>
