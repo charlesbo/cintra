@@ -5,7 +5,7 @@
   <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
   <meta name="keywords" content="python web application" />
   <meta name="description" content="pyramid web application" />
-  <link rel="shortcut icon" href="/static/favicon.ico" />
+  <link rel="shortcut icon" href="/static/cintra.ico" />
   <link rel="stylesheet" href="/static/pylons.css" type="text/css" media="screen" charset="utf-8" />
   <link rel="stylesheet" href="http://static.pylonsproject.org/fonts/nobile/stylesheet.css" media="screen" />
   <link rel="stylesheet" href="http://static.pylonsproject.org/fonts/neuton/stylesheet.css" media="screen" />
@@ -17,22 +17,26 @@
   <div id="wrap">
     <div id="top">
       <div class="top align-center">
-        <div><img src="/static/pyramid.png" width="750" height="169" alt="pyramid"/></div>
+        <div><img src="/static/cintra.png" width="750" height="169" alt="pyramid"/></div>
       </div>
     </div>
     <div id="middle">
       <div class="middle align-center">
         <p class="app-welcome">
-          Welcome to <span class="app-name">${project}</span> to trade world's future!
+          Welcome to <span class="app-name">${project}</span> to trade world's future! 
         </p>
+      </div>
+      <div style="float:right; font-size:12px; font-style:italic; font-weight:bold">
+	<br><p>-- never believe things are true until officially denied...
+	</p>
       </div>
     </div>
     <div id="bottom">
       <div class="bottom">
           <div tal:repeat="instinfo insts">
 	     <a href="${request.application_url}/instruments/${instinfo[1].__name__}">${instinfo[0]}</a>&nbsp Market Price: ${instinfo[1].marketPrice}${instinfo[1].priceUnit} || Last Traded Price: ${instinfo[1].lastTradedPrice}${instinfo[1].priceUnit}
-	     <a href="${request.application_url}/instruments/${instinfo[1].__name__}/buy">Buy</a> &nbsp 
-	     <a href="${request.application_url}/instruments/${instinfo[1].__name__}/sell">Sell</a> &nbsp 
+	     <a href="${request.application_url}/instruments/${instinfo[1].__name__}/buy">Buy</a> &nbsp
+	     <a href="${request.application_url}/instruments/${instinfo[1].__name__}/sell">Sell</a> &nbsp
 	  </div>
 	  <form method='get' action="${request.application_url}/instruments/add_instrument">
 	  	<button type='submit' >Add Instrument</button>

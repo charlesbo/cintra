@@ -32,8 +32,14 @@
     </div>
     <div id="bottom">
       <div class="bottom">
-        <div >
-
+        <div tal:repeat="instinfo insts">
+	  <a href="${request.application_url}/instruments/${instinfo[1].__name__}">${instinfo[0]}</a>&nbsp Market Price: ${instinfo[1].marketPrice}${instinfo[1].priceUnit} || Last Traded Price: ${instinfo[1].lastTradedPrice}${instinfo[1].priceUnit}
+	  <a href="${request.application_url}/instruments/${instinfo[1].__name__}/buy">Buy</a> &nbsp 
+	  <a href="${request.application_url}/instruments/${instinfo[1].__name__}/sell">Sell</a> &nbsp 
+	</div>
+	<form method='get' action="${request.application_url}/instruments/add_instrument">
+	  <button type='submit' >Add Instrument</button>
+	</form>
       </div>
     </div>
   </div>

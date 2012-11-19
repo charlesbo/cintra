@@ -33,14 +33,25 @@
     <div id="bottom">
       <div class="bottom">
         <form action="${save_url}" method="post">
+	  <div>Instrument Name: <br/></div>
           <textarea name="name" tal:content="inst.__name__" rows="1"
                     cols="60"/><br/>
+	  <div>Market Price: <br/></div>
+	  <textarea name="marketPrice" tal:content="inst.marketPrice" rows="1"
+	  	    cols="10"/><br/>
+	  <div>Price Unit: <br/></div>
+	  <textarea name="priceUnit" tal:content="inst.priceUnit" rows="1"
+	  	    cols="5"/><br/>
+	  <div>Tag: <br/></div>
 	  <textarea name="tag" tal:content="inst.tag" rows="1"
 	  	    cols="80"/><br/>
+	  <div>Description: <br/></div>
 	  <textarea name="description" tal:content="inst.description" rows="3"
 	  	    cols="80"/><br/>
-	  <textarea name="settleConditions" tal:content="inst.settleConditions" rows="20"
+	  <div>Settle conditions: <br/></div>
+	  <textarea name="settleConditions" tal:content="inst.settleConditions" rows="5"
 	  	    cols="80"/><br/>
+	  <div>Category: <br/></div>
 	  <textarea name="category" tal:content="inst.category" rows="1"
 	  	    cols="80"/><br/>
           <input type="submit" name="form.submitted" value="Save"/>

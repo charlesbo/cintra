@@ -8,7 +8,7 @@
   <meta name="keywords" content="python web application" />
   <meta name="description" content="pyramid web application" />
   <link rel="shortcut icon"
-        href="/static/favicon.ico" />
+        href="/static/cintra.ico" />
   <link rel="stylesheet"
         href="/static/pylons.css"
         type="text/css" media="screen" charset="utf-8" />
@@ -24,7 +24,7 @@
       <div class="top-small align-center">
         <div>
           <img width="220" height="50" alt="pyramid"
-        src="/static/pyramid-small.png" />
+        src="/static/cintra_small.png" />
         </div>
       </div>
     </div>
