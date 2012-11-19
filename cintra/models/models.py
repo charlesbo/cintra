@@ -1,4 +1,5 @@
 from persistent.mapping import PersistentMapping
+from persistent.list import PersistentList
 from cintra.models.instruments import InstrumentFolder
 from cintra.models.users import UserFolder
 from cintra.models.books import OrderbookFolder, BookFolder, TradeFolder
@@ -60,6 +61,11 @@ def appmaker(zodb_root):
         cintra_root['trades'] = tradeFolder
         tradeFolder.__name__ = 'trades'
         tradeFolder.__parent__ = cintra_root
+
+        quotesoftheday = PersistentList()
+        cintra_root['quotesoftheday'] = quotesoftheday
+        quotesoftheday.__name__ = 'quotesoftheday'
+        quotesoftheday.__parent__ = cintra_root
 
         zodb_root['cintra_root'] = cintra_root
         import transaction
