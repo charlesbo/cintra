@@ -27,13 +27,19 @@ cintra/static/pylons.css
 cintra/static/pyramid-small.png
 cintra/static/pyramid.png
 cintra/static/transparent.gif
+<<<<<<< HEAD
 cintra/templates/add_instrument.pt
+=======
+>>>>>>> 65134d2eee38ead7208503e367bcf850987949f9
 cintra/templates/cintra.pt
 cintra/templates/edit_instrument.pt
 cintra/templates/edit_order.pt
 cintra/templates/edit_user.pt
+<<<<<<< HEAD
 cintra/templates/instrument.pt
 cintra/templates/mytemplate.pt
+=======
+>>>>>>> 65134d2eee38ead7208503e367bcf850987949f9
 cintra/templates/view_instrument.pt
 cintra/templates/view_instruments.pt
 cintra/templates/view_orderbook.pt

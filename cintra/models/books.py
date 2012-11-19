@@ -14,6 +14,9 @@ class BookFolder( PersistentMapping ):
     pass
 
 
+class TradeFolder( PersistentMapping ):
+    pass
+
 class Order( Persistent ):
     def __init__(self, instrument=None, user=None, buy=True, amount=0, price=5, priceUnit='CNY', orderTime=datetime.utcnow()):
         self.instrument = instrument
@@ -24,6 +27,7 @@ class Order( Persistent ):
         self.amountMatched = 0
         self.price = price
         self.priceMatched = -1.0
+        self.pricesAmountsMatched = PersistentList()
         self.priceUnit = priceUnit
         self.orderTime = orderTime
 
@@ -42,6 +46,9 @@ class Order( Persistent ):
     def amountAvailable(self):
         return self.amount - self.amountMatched
 
+    def cost(self):
+        return sum([p*a for p, a in self.pricesAmountsMatched])
+
     def match(self, order):
         if order.buy==self.buy:
             return False
@@ -57,15 +64,50 @@ class Order( Persistent ):
                 amountMatched = buyside.amountAvailable()<sellside.amountAvailable() and buyside.amountAvailable() or sellside.amountAvailable()
                 buyside.amountMatched += amountMatched
                 sellside.amountMatched += amountMatched
+
+                buyside.pricesAmountsMatched.append(sellside.price, amountMatched)
+                sellside.pricesAmountsMatched.append(sellside.price, amountMatched)
                 return True
             else:
                 return False
 
 
+class Trade( Persistent ):
+    def __init__(self, buyer=None, seller=None, instrument=None, 
+                 amount=0.0, price=0.0, priceUnit='CNY'):
+        self.buyer = buyer
+        self.seller = seller
+        self.instrument = instrument
+        self.amount = amount
+        self.price = price
+        self.priceUnit = priceUnit
+        self.tradeTime = datetime.datetime.now()
+
+
 class Book( Persistent ):
-    def __init__(self, user=None, positions={}):
+    ''' This is a user book to include user's orders, one per user '''
+    def __init__(self, user=None):
         self.user = user
-        self.positions = positions
+        self.orders = PersistentList()
+        self.positions = PersistentMapping()
+
+    def addOrder(self, order):
+        if order.instrument in self.positions:
+            self.positions[order.instrument].append(order)
+        else:
+            self.positions[order.instrument] = PersistentList(order)
+
+    def cost(self):
+        cost=0.0
+        for orders in self.positions.itervalues():
+            cost += sum([o.cost() for o in orders])
+        return 
+
+    def marketValue(self):
+        mktval = 0.0
+        for inst, orders in self.positions.iteritems():
+            mktval += inst.marketPrice * sum([o.amountMatched for o in orders])
+        return mktval
 
 
 class Orderbook( Persistent ):
