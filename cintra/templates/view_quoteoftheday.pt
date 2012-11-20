@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal">
+<head>
+  <title>${inst.__name__} details</title>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+  <meta name="keywords" content="python web application" />
+  <meta name="description" content="pyramid web application" />
+  <link rel="shortcut icon"
+        href="/static/cintra.ico" />
+  <link rel="stylesheet"
+        href="/static/pylons.css"
+        type="text/css" media="screen" charset="utf-8" />
+  <!--[if lte IE 6]>
+  <link rel="stylesheet"
+        href="/static/ie6.css"
+        type="text/css" media="screen" charset="utf-8" />
+  <![endif]-->
+</head>
+<body>
+  <div id="wrap">
+    <div id="top-small">
+      <div class="top-small align-center">
+        <div>
+          <img width="220" height="50" alt="pyramid"
+        src="/static/cintra_small.png" />
+        </div>
+      </div>
+    </div>
+    <div id="middle">
+    </div>
+    <div id="bottom">
+      <div class="top">
+      	<div> Name:
+          <div tal:replace="structure inst.__name__">
+            Instrument name.
+          </div><br/>
+	</div>
+	<div> Market Price:
+          <div tal:replace="structure inst.marketPrice">
+            Instrument market price.
+          </div>
+	  <div tal:replace="structure inst.priceUnit">
+	    Instrument price unit.
+	  </div><br/>
+	</div>
+        <div> Tag:
+	  <div tal:replace="structure inst.tag">
+            Instrument tag.
+          </div><br/>
+	</div>
+	<div> Description:
+          <div tal:replace="structure inst.description">
+            Instrument description.
+          </div><br/>
+	</div>
+	<div> Settle conditions:  
+          <div tal:replace="structure inst.settleConditions">
+            Instrument settleConditions.
+          </div><br/>
+	</div>
+	<div> Category:  
+          <div tal:replace="structure inst.category">
+            Instrument category.
+          </div><br/>
+	</div>
+      </div>
+      <div class="middle">
+	<div style="float:left">
+	  <form method='get' action="${request.application_url}/instruments/${inst.__name__}/buy">
+	    <button type='submit' >BUY</button>
+	  </form>
+	</div>
+	<div style="float:left">
+	  <form method='get' action="${request.application_url}/instruments/${inst.__name__}/sell">
+	    <button type='submit' >SELL</button>
+	  </form>
+	</div>
+        <div style="float:left">
+	  <form method='get' action="${request.application_url}/instruments/${inst.__name__}/edit">
+	    <button type='submit' >Edit this instrument</button>
+	  </form>
+	</div>
+      </div>
+      <div class="bottom">
+	<div style="float:left">
+	  <form method='get' action="${request.application_url}/orderbooks/${inst.__name__}">
+	    <button type='submit' >View this instrument's orderbook</button>
+	  </form>
+	</div>
+	<div style="float:left">
+	  <form method='get' action="${request.application_url}/instruments">
+	    <button type='submit' >View all instruments</button>
+	  </form>
+	</div>
+      </div>
+    </div>
+  </div>
+  <div id="footer">
+    <div class="footer"
+         >&copy; Copyright 2012-2013, Beyondcloud inc..</div>
+  </div>
+</body>
+</html>

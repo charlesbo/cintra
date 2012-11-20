@@ -17,7 +17,7 @@
   <div id="wrap">
     <div id="top">
       <div class="top align-center">
-        <div><img src="/static/pyramid.png" width="750" height="169" alt="pyramid"/></div>
+        <div><img src="/static/cintra.png" width="750" height="169" alt="pyramid"/></div>
       </div>
     </div>
     <div id="middle">
@@ -27,7 +27,8 @@
         </p>
       </div>
       <div style="float:right; font-size:12px; font-style:italic; font-weight:bold">
-	<br><p>-- never believe things are true until officially denied...
+<!--	<br><p>-- never believe things are true until officially denied... -->
+        <br><p>${quoteofthedays}
 	</p>
       </div>
     </div>

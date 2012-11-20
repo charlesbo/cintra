@@ -6,10 +6,15 @@ import random
 @view_config(context=CintraModel, renderer='cintra:templates/cintra.pt')
 def cintra_view(context, request):
     insts = context['instruments']
-    quotesoftheday = context['quotesoftheday']
-    n = len(quotesoftheday)
-    i = random.randrange(n)
-    quoteoftheday = quotesoftheday[i]
-    return {'project': 'Cintra',
+    quoteofthedays = context['quoteofthedays']
+    n = len(quoteofthedays)
+    if n==0:
+        return {'project': 'Cintra',
             'insts': insts.items(),
-            'quoteoftheday': quoteoftheday}
+            'quoteoftheday': '--quote of the day is empty...'}
+    else:
+        i = random.randrange(n)
+        quoteoftheday = quoteofthedays[i]
+        return {'project': 'Cintra',
+                'insts': insts.items(),
+                'quoteoftheday': quoteoftheday}

@@ -4,6 +4,7 @@ from cintra.models.instruments import InstrumentFolder
 from cintra.models.users import UserFolder
 from cintra.models.books import OrderbookFolder, BookFolder, TradeFolder
 from cintra.models.security import SecurityFolder, UsersLoginInfo, GroupsInfo
+from cintra.models.quoteofthedays import QuoteOfTheDayFolder
 from pyramid.security import Allow, Everyone
 
 
@@ -61,13 +62,14 @@ def appmaker(zodb_root):
         tradeFolder.__name__ = 'trades'
         tradeFolder.__parent__ = cintra_root
 
-        quotes = ['--old soldiers never die, they fade away',\
-                  '--things never change, we do',
-                  ]
-        quotesoftheday = PersistentList([unicode(q, 'utf-8') for q in quotes])
-        cintra_root['quotesoftheday'] = quotesoftheday
-        quotesoftheday.__name__ = 'quotesoftheday'
-        quotesoftheday.__parent__ = cintra_root
+        #quotes = ['--old soldiers never die, they fade away',\
+        #          '--things never change, we do',
+        #          ]
+        #quotesoftheday = PersistentList([unicode(q, 'utf-8') for q in quotes])
+        quoteofthedays = QuoteOfTheDayFolder()
+        cintra_root['quoteofthedays'] = quoteofthedays
+        quoteofthedays.__name__ = 'quoteofthedays'
+        quoteofthedays.__parent__ = cintra_root
 
         zodb_root['cintra_root'] = cintra_root
         import transaction
