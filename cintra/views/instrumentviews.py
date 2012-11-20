@@ -11,6 +11,7 @@ class InstrumentViews(object):
         self.request = request
         self.context = context
 
+
     @view_config(name='add_instrument', context=InstrumentFolder, renderer="cintra:templates/edit_instrument.pt")
     def add_instrument(self):
         '''

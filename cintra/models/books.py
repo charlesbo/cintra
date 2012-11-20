@@ -35,7 +35,7 @@ class Order( Persistent ):
         if self.priceUnit <> order.priceUnit:
             raise ValueError('Cannot compare two orders with different priceUnit!')
         # the cheaper one is smaller
-        # when same price, the ealier order is smaller 
+        # when same price, the ealier order is smaller
         price_cmp_result = self.price>order.price and 1 or (self.price<order.price and -1 or 0)
         time_cmp_result = self.orderTime>order.orderTime and 1 or (self.orderTime<order.orderTime and -1 or 0)
         return price_cmp_result or time_cmp_result
@@ -73,7 +73,7 @@ class Order( Persistent ):
 
 
 class Trade( Persistent ):
-    def __init__(self, buyer=None, seller=None, instrument=None, 
+    def __init__(self, buyer=None, seller=None, instrument=None,
                  amount=0.0, price=0.0, priceUnit='CNY'):
         self.buyer = buyer
         self.seller = seller
@@ -101,7 +101,7 @@ class Book( Persistent ):
         cost=0.0
         for orders in self.positions.itervalues():
             cost += sum([o.cost() for o in orders])
-        return 
+        return
 
     def marketValue(self):
         mktval = 0.0
@@ -125,7 +125,7 @@ class Orderbook( Persistent ):
         defaultMktP = self.instrument.marketPrice
         lastTradedPrice = self.instrument.lastTradedPrice
         bestBuyPrice = self.buyList[0].price if self.buyList else 0.0
-        bestSellPrice = self.sellList[0].price if self.sellList else 0.0
+        bestSellPrice = self.sellList[0].price if self.sellList else 10.0
         if bestBuyPrice <= lastTradedPrice <= bestSellPrice:
             mktp = lastTradedPrice
         elif 0<lastTradedPrice<bestBuyPrice:
@@ -163,4 +163,4 @@ class Orderbook( Persistent ):
         else:
             self._insertOrder(order)
         return matchedIdx > -1 or order.matched()
-        
+

@@ -25,12 +25,12 @@ def appmaker(zodb_root):
         cintra_root['instruments'] = instFolder
         instFolder.__name__='instruments'
         instFolder.__parent__ = cintra_root
-        
+
         orderbookFolder = OrderbookFolder()
         cintra_root['orderbooks'] = orderbookFolder
         orderbookFolder.__name__='orderbooks'
         orderbookFolder.__parent__ = cintra_root
-         
+
         bookFolder = BookFolder()
         cintra_root['books'] = bookFolder
         bookFolder.__name__='books'
@@ -56,13 +56,15 @@ def appmaker(zodb_root):
         groupsinfo.__name__ = 'groupsinfo'
         groupsinfo.__parent__ = cintra_root['security']
 
-
         tradeFolder = TradeFolder()
         cintra_root['trades'] = tradeFolder
         tradeFolder.__name__ = 'trades'
         tradeFolder.__parent__ = cintra_root
 
-        quotesoftheday = PersistentList()
+        quotes = ['--old soldiers never die, they fade away',\
+                  '--things never change, we do',
+                  ]
+        quotesoftheday = PersistentList([unicode(q, 'utf-8') for q in quotes])
         cintra_root['quotesoftheday'] = quotesoftheday
         quotesoftheday.__name__ = 'quotesoftheday'
         quotesoftheday.__parent__ = cintra_root
