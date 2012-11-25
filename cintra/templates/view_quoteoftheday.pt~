@@ -36,7 +36,7 @@
 	</div>
       </div>
       <div class="middle">
-	  <form method='get' action="${request.application_url}/quoteofthedays/${quote.__name__}/edit">
+	  <form method='get' action="${request.application_url}/quoteofthedays/${quoteoftheday.__name__}/edit">
 	    <button type='submit' >Edit this quote of the day</button>
 	  </form>
 	</div>

@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
       xmlns:tal="http://xml.zope.org/namespaces/tal">
 <head>
-  <title>Edit ${quoteoftheday}</title>
+  <title>Edit Quote ${quote.__name__}</title>
   <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
   <meta name="keywords" content="python web application" />
   <meta name="description" content="pyramid web application" />
@@ -33,8 +33,14 @@
     <div id="bottom">
       <div class="bottom">
         <form action="${save_url}" method="post">
-	  <div>Quote of the day: <br/></div>
-          <textarea quoteoftheday="quoteoftheday" tal:content="quoteoftheday" rows="1"
+	  <div>Quote of the day ${quote.__name__}:<br/></div>
+          <textarea name="quoteoftheday" tal:content="quote.quote" rows="1"
+                    cols="60"/><br/>
+	  <div>Category: <br/></div>
+          <textarea name="category" tal:content="quote.category" rows="1"
+                    cols="60"/><br/>
+	  <div>Author: <br/></div>
+          <textarea name="author" tal:content="quote.author" rows="1"
                     cols="60"/><br/>
 	  <input type="submit" name="form.submitted" value="Save"/>
         </form>

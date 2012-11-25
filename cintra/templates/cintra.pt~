@@ -28,7 +28,7 @@
       </div>
       <div style="float:right; font-size:12px; font-style:italic; font-weight:bold">
 <!--	<br><p>-- never believe things are true until officially denied... -->
-        <br><p>${quoteofthedays}
+        <br><p>${quote}
 	</p>
       </div>
     </div>

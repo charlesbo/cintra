@@ -8,13 +8,14 @@ def cintra_view(context, request):
     insts = context['instruments']
     quoteofthedays = context['quoteofthedays']
     n = len(quoteofthedays)
-    if n==0:
+    if n == 0:
         return {'project': 'Cintra',
             'insts': insts.items(),
-            'quoteoftheday': '--quote of the day is empty...'}
+            'quote': '--quote of the day is empty...'}
     else:
         i = random.randrange(n)
-        quoteoftheday = quoteofthedays[i]
+        #quote = quoteofthedays[i].quote
+        quote = ''
         return {'project': 'Cintra',
                 'insts': insts.items(),
-                'quoteoftheday': quoteoftheday}
+                'quote': quote}

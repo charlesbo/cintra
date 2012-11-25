@@ -1,4 +1,4 @@
-from cintra.models.quoteofthedays import QuoteOfTheDayFolder
+from cintra.models.quoteofthedays import QuoteOfTheDayFolder, QuoteOfTheDay
 from pyramid.view import view_config
 from pyramid.httpexceptions import HTTPFound
 import logging
@@ -13,26 +13,38 @@ class QuoteOfTheDayViews(object):
                  context=QuoteOfTheDayFolder,
                  renderer="cintra:templates/edit_quoteoftheday.pt")
     def add_quoteoftheday(self):
-        #Add new instrument
+        #Add new quote of the day
+        quote = QuoteOfTheDay()
+        l = len(self.context)
+        if l == 0:
+            quote.__name__ = 78001
+        else:
+            quote.__name__ = self.context.keys()[l - 1] + 1
         if 'form.submitted' in self.request.params:
-            name = self.request.params['quoteoftheday']
-            quoteoftheday = name
-            self.context[name] = quoteoftheday
+            quotecontent = self.request.params['quoteoftheday']
+            idd = quote.__name__
+            category = self.request.params['category']
+            author = self.request.params['author']
+            quote = QuoteOfTheDay(idd=idd,
+                                  category=category,
+                                  quote=quotecontent,
+                                  author=author)
+            #quote.__name__ = idd
+            self.context[idd] = quote
             approot = self.context.__parent__
-            return HTTPFound(location=self.request.resource_url(self.context, name))
-        save_url = self.request.resource_url(self.context, 'add_instrument')
-        quoteoftheday = ""
-        #quoteoftheday.__name__ = ''
-        #quoteoftheday.__parent__ = self.context
-        return dict(quoteoftheday=quoteoftheday, save_url=save_url)
+            return HTTPFound(location=self.request.resource_url(self.context, idd))
+        save_url = self.request.resource_url(self.context, 'add_quoteoftheday')
+        quote.__parent__ = self.context
+        return dict(quote=quote, save_url=save_url)
 
-    '''
-    @view_config(context=Instrument, renderer='cintra:templates/view_quoteoftheday.pt')
+    @view_config(context=QuoteOfTheDay,
+                 renderer='cintra:templates/view_quoteoftheday.pt')
     def view_quoteoftheday(self):
         # view quote of the day
-        quoteoftheday = self.context
-        return dict(inst=inst)
+        quote = self.context
+        return dict(quote=quote)
 
+    '''
     @view_config(name='edit', context=Instrument, renderer='cintra:templates/edit_instrument.pt')
     def edit_instrument(self):
         inst = self.context
